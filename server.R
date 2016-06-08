@@ -19,21 +19,24 @@ shinyServer(
       if (is.null(inFile())) {
         return(NULL)
       } else {
-        read.csv(inFile()$datapath)
+        read.csv(inFile()$datapath, header = TRUE)
       }
     })
     
     
-    output$plot<-
-      renderPlot({
+    output$plot<-renderPlot({
+
         updateSelectInput(
-          session,
-          "y_input",
-          choices=names(myData()))
-        plot(myData[,1])
-      })
+        session,
+        "y_input",
+        choices=names(myData()))
+      tp<-myData()$incidents
+      plot(tp, type = "l")
+    })
     
     
     #### EXtre Programs####  
     output$num1<-renderText({input$slider1})
   })
+
+
