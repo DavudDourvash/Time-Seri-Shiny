@@ -23,7 +23,6 @@ shinyServer(
       }
     })
     
-    plot()
     output$plot<-renderPlot({
 
         updateSelectInput(
